@@ -10,14 +10,15 @@ public class BankDemo {
     private static BankAccount account;
 
     public static void main(String[] args) {
+
         while (true) {
 
             System.out.println("=== БАНК ===");
             System.out.println("1. Создать счет");
             System.out.println("2. Пополнить счет");
             System.out.println("3. Снять деньги");
-            System.out.println("4. Показать данные счета");
-            System.out.println("5. Перевод между счетами");
+            System.out.println("4. Показать баланс");
+            System.out.println("5. Показать данные счета");
             System.out.println("0. Выход");
 
             try {
@@ -41,6 +42,10 @@ public class BankDemo {
                         break;
 
                     case 4:
+                       printBalance();
+                        break;
+
+                    case 5:
                         printInfo();
                         break;
 
@@ -109,7 +114,23 @@ public class BankDemo {
     }
 
     private static void printInfo() {
+
+        if (account == null) {
+            System.out.println("Сначала создайте счет");
+            return;
+        }
+
         account.printInfo();
+    }
+
+    private static void printBalance() {
+
+        if (account == null) {
+            System.out.println("Сначала создайте счет");
+            return;
+        }
+
+        account.printBalance();
     }
 
 }

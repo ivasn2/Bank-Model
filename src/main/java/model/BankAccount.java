@@ -8,9 +8,11 @@ public class BankAccount {
 
 
     public BankAccount(String accountNumber, String ownerName, double balance) {
+
         if (balance < 0) {
             throw new IllegalArgumentException("Ошибка: начальный баланс не может быть отрицательным.");
         }
+
         this.accountNumber = accountNumber;
         this.ownerName = ownerName;
         this.balance = balance;
@@ -33,13 +35,16 @@ public class BankAccount {
     }
 
     public void deposit(double amount) {
+
         if (amount <= 0) {
-            throw new IllegalArgumentException("Ошибка: сумма пополнения должна быть больше нуля.");
+            throw new IllegalArgumentException("Ошибка: Отрицательные значения запрещены! Сумма пополнения должна быть больше нуля.");
         }
+
         balance += amount;
     }
 
     public void withdraw(double amount) {
+
         if (amount <= 0) {
             throw new IllegalArgumentException("Ошибка: сумма снятия должна быть больше нуля.");
         }
@@ -56,5 +61,8 @@ public class BankAccount {
         System.out.println("Баланс: " + balance);
     }
 
+    public void printBalance() {
+        System.out.println("Баланс вашего счета: " + balance);
+    }
 
 }
