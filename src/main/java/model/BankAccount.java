@@ -57,12 +57,4 @@ public class BankAccount {
     }
 
 
-    public void transfer(BankAccount target, double amount) {
-        if (target == null) {
-            throw new IllegalArgumentException("Ошибка: целевой счет не найден.");
-        }
-        this.withdraw(amount);
-        target.deposit(amount);
-    }
-
 }

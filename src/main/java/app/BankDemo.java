@@ -7,8 +7,7 @@ import java.util.Scanner;
 
 public class BankDemo {
     private static Scanner scanner = new Scanner(System.in);
-    private static BankAccount account1;
-    private static BankAccount account2;
+    private static BankAccount account;
 
     public static void main(String[] args) {
         while (true) {
@@ -45,10 +44,6 @@ public class BankDemo {
                         printInfo();
                         break;
 
-                    case 5:
-                        transfer(account2, account1.getBalance());
-                        break;
-
                     case 0:
                         System.out.println("Выход из программы...");
                         return;
@@ -77,14 +72,14 @@ public class BankDemo {
         double balance = scanner.nextDouble();
         scanner.nextLine();
 
-        account1 = new BankAccount(number, owner, balance);
+        account = new BankAccount(number, owner, balance);
 
         System.out.println("Счет успешно создан");
     }
 
     private static void deposit() {
 
-        if (account1 == null) {
+        if (account == null) {
             System.out.println("Сначала создайте счет");
             return;
         }
@@ -93,41 +88,28 @@ public class BankDemo {
         double amount = scanner.nextDouble();
         scanner.nextLine();
 
-        account1.deposit(amount);
+        account.deposit(amount);
         System.out.println("Счет пополнен");
     }
 
     private static void withdraw() {
 
-        if (account1 == null) {
+        if (account == null) {
             System.out.println("Сначала создайте счет");
             return;
         }
 
-        System.out.println();
+        System.out.print("Введите сумму снятия: ");
+        double withdrawal = scanner.nextDouble();
+        scanner.nextLine();
+
+        account.withdraw(withdrawal);
+        System.out.println("С счета успешно снято: " + withdrawal);
 
     }
 
     private static void printInfo() {
-        account1.printInfo();
-    }
-
-    private static void transfer(BankAccount target, double amount) {
-        if (account1 == null || account2 == null) {
-            System.out.println("Необходимо создать два счета");
-            return;
-        }
-
-        System.out.print("Введите сумму перевода: ");
-        amount = scanner.nextDouble();
-        scanner.nextLine();
-
-        try {
-            account1.transfer(account2, amount);
-            System.out.println("Перевод выполнен успешно");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        account.printInfo();
     }
 
 }
