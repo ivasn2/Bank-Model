@@ -36,6 +36,7 @@ public class BankAccount {
 
     public void deposit(double amount) {
 
+
         if (amount <= 0) {
             throw new IllegalArgumentException("Ошибка: Отрицательные значения запрещены! Сумма пополнения должна быть больше нуля.");
         }

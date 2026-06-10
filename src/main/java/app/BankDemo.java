@@ -67,19 +67,31 @@ public class BankDemo {
 
     private static void createAccount() {
 
-        System.out.print("Введите номер счета: ");
-        String number = scanner.nextLine();
+        try {
 
-        System.out.print("Введите владельца: ");
-        String owner = scanner.nextLine();
+            System.out.print("Введите номер счета: ");
+            String number = scanner.nextLine();
 
-        System.out.print("Введите баланс: ");
-        double balance = scanner.nextDouble();
-        scanner.nextLine();
+            System.out.print("Введите владельца: ");
+            String owner = scanner.nextLine();
 
-        account = new BankAccount(number, owner, balance);
+            System.out.print("Введите баланс: ");
+            double balance = scanner.nextDouble();
+            scanner.nextLine();
 
-        System.out.println("Счет успешно создан");
+            account = new BankAccount(number, owner, balance);
+
+            System.out.println("Счет успешно создан");
+        }
+
+        catch (InputMismatchException e) {
+            System.out.println("Ошибка: баланс должен быть числом");
+            scanner.nextLine();
+        }
+
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void deposit() {
@@ -89,12 +101,22 @@ public class BankDemo {
             return;
         }
 
-        System.out.print("Введите сумму: ");
-        double amount = scanner.nextDouble();
-        scanner.nextLine();
+        try {
+            double amount = scanner.nextDouble();
+            scanner.nextLine();
 
-        account.deposit(amount);
-        System.out.println("Счет пополнен");
+            account.deposit(amount);
+
+            System.out.println("Счет пополнен");
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Ошибка: необходимо ввести число");
+            scanner.nextLine();
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private static void withdraw() {
@@ -104,12 +126,22 @@ public class BankDemo {
             return;
         }
 
-        System.out.print("Введите сумму снятия: ");
-        double withdrawal = scanner.nextDouble();
-        scanner.nextLine();
+        try {
+            double amount = scanner.nextDouble();
+            scanner.nextLine();
 
-        account.withdraw(withdrawal);
-        System.out.println("С счета успешно снято: " + withdrawal);
+            account.withdraw(amount);
+
+            System.out.println("С счета успешно снято: " + amount);
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Ошибка: необходимо ввести число");
+            scanner.nextLine();
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
 
     }
 
