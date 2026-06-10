@@ -55,14 +55,4 @@ public class BankAccount {
         balance -= amount;
     }
 
-    public void printInfo() {
-        System.out.println("Номер счета: " + accountNumber);
-        System.out.println("Владелец: " + ownerName);
-        System.out.println("Баланс: " + balance);
-    }
-
-    public void printBalance() {
-        System.out.println("Баланс вашего счета: " + balance);
-    }
-
 }

@@ -120,7 +120,9 @@ public class BankDemo {
             return;
         }
 
-        account.printInfo();
+        System.out.println("Номер счета: " + account.getAccountNumber());
+        System.out.println("Владелец счета: " + account.getOwnerName());
+        System.out.println("Баланс счета: " + account.getBalance());
     }
 
     private static void printBalance() {
@@ -130,7 +132,7 @@ public class BankDemo {
             return;
         }
 
-        account.printBalance();
+        System.out.println("Баланс счета: " + account.getBalance());
     }
 
 }
